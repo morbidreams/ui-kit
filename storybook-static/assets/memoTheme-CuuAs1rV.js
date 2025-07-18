@@ -1,0 +1,1 @@
+import{g as r,y as i}from"./DefaultPropsProvider-Cab5bodk.js";function h(m,t,n="Mui"){const a={};return t.forEach(e=>{a[e]=r(m,e,n)}),a}const l={theme:void 0};function u(m){let t,n;return function(e){let s=t;return(s===void 0||e.theme!==n)&&(l.theme=e.theme,s=i(m(l)),t=s,n=e.theme),s}}const c=u;export{h as g,c as m};

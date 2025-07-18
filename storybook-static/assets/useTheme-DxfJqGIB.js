@@ -1,1 +1,0 @@
-import{A as n,k as r}from"./DefaultPropsProvider-Cz_335H4.js";import{r as o}from"./iframe-DO1mR48L.js";function s(e){return Object.keys(e).length===0}function m(e=null){const t=o.useContext(n);return!t||s(t)?e:t}const u=r();function h(e=u){return m(e)}export{h as u};

@@ -1,0 +1,1 @@
+import{A as n,k as r}from"./DefaultPropsProvider-Cab5bodk.js";import{r as o}from"./iframe-CWrSSH7G.js";function s(e){return Object.keys(e).length===0}function m(e=null){const t=o.useContext(n);return!t||s(t)?e:t}const u=r();function h(e=u){return m(e)}export{h as u};
