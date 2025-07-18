@@ -2,7 +2,7 @@
 
 This project is a **collection of reusable UI components** I’ve built and refined over time. It's a sandbox for experimenting with design patterns, styling techniques and interactivity.
 
-👉 https://morbidreams.github.io/ui-kit/
+👉 [ela-ui-kit.vercel.app](https://ela-ui-kit.vercel.app/?path=/story/carousel--base)
 
 ---
 
