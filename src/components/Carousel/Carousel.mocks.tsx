@@ -93,7 +93,7 @@ const baseStyles: ISlider = {
     </Container>,
   ],
   slideSeparator: "sur",
-  bgImgSrc: "../../../images/business.jpg",
+  bgImgSrc: "https://i.imgur.com/fvcwruC.jpeg",
   togglePaginationDots: true,
   toggleNavigation: true,
 };

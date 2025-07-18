@@ -1,7 +1,7 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
-import PaginationDots from '../PaginationDots';
-import SliderHeader from '../SliderHeader';
+import React, { useLayoutEffect, useRef, useState } from "react";
+import styled from "styled-components";
+import PaginationDots from "../PaginationDots";
+import SliderHeader from "../SliderHeader";
 
 /**
  * Props for the Slider component
@@ -17,14 +17,15 @@ import SliderHeader from '../SliderHeader';
 export interface ISlider {
   children: React.ReactNode[];
   bgImgSrc?: string;
-  slideSeparator: 'sur' | 'of';
+  slideSeparator: "sur" | "of";
   slidesToShow?: number;
   togglePaginationDots?: boolean;
   toggleNavigation?: boolean;
   dragOffsetValue?: number;
 }
 const Background = styled.div<{ $bgImgSrc: string }>`
-  background: ${({ $bgImgSrc }) => ($bgImgSrc ? `url(${$bgImgSrc})` : 'transparent')};
+  background: ${({ $bgImgSrc }) =>
+    $bgImgSrc ? `url(${$bgImgSrc})` : "transparent"};
   background-size: cover;
   background-position: center;
   height: fit-content;
@@ -45,7 +46,7 @@ const SliderPagination = styled.div<{
   padding: 8px 0 16px 0;
   box-sizing: border-box;
   height: ${({ $togglePaginationDots, $totalSlides, $visibleSlides }) =>
-    $togglePaginationDots && $totalSlides !== $visibleSlides ? '40px' : '32px'};
+    $togglePaginationDots && $totalSlides !== $visibleSlides ? "40px" : "32px"};
 `;
 
 const SliderBody = styled.div`
@@ -59,9 +60,12 @@ const SliderWrapper = styled.div<{
   $slidesToShow: number;
 }>`
   display: flex;
-  transition: ${({ $isDragging }) => ($isDragging ? 'none' : 'transform 0.3s ease')};
+  transition: ${({ $isDragging }) =>
+    $isDragging ? "none" : "transform 0.3s ease"};
   transform: ${({ $currentIndex, $dragOffset, $slidesToShow }) => {
-    const slideWidth = `(100% - (${$slidesToShow - 1} * 16px)) / ${$slidesToShow}`;
+    const slideWidth = `(100% - (${
+      $slidesToShow - 1
+    } * 16px)) / ${$slidesToShow}`;
     return `translateX(calc(-${$currentIndex} * ((${slideWidth}) + 16px) + ${$dragOffset}px))`;
   }};
   will-change: transform;
@@ -69,7 +73,8 @@ const SliderWrapper = styled.div<{
 `;
 
 const Slide = styled.div<{ $slidesToShow: number }>`
-  width: ${({ $slidesToShow }) => `calc((100% - (${$slidesToShow - 1} * 16px)) / ${$slidesToShow})`};
+  width: ${({ $slidesToShow }) =>
+    `calc((100% - (${$slidesToShow - 1} * 16px)) / ${$slidesToShow})`};
   flex-shrink: 0;
   border-radius: 16px;
   background: white;
@@ -78,14 +83,14 @@ const Slide = styled.div<{ $slidesToShow: number }>`
 `;
 
 const paginationDotsStyle = {
-  background: 'transparent',
+  background: "transparent",
   padding: 0,
 };
 
 const Slider: React.FC<ISlider> = ({
   children,
-  bgImgSrc = 'https://i.imgur.com/Bs9nnJQ.jpeg',
-  slideSeparator = 'of',
+  bgImgSrc = "https://i.imgur.com/fvcwruC.jpeg",
+  slideSeparator = "of",
   slidesToShow,
   togglePaginationDots = true,
   toggleNavigation = true,
@@ -94,7 +99,9 @@ const Slider: React.FC<ISlider> = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  const [visibleSlides, setVisibleSlides] = useState(Math.max(slidesToShow ?? 1, 1));
+  const [visibleSlides, setVisibleSlides] = useState(
+    Math.max(slidesToShow ?? 1, 1)
+  );
   const startTouchRef = useRef<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const slideRef = useRef<HTMLDivElement>(null);
@@ -109,7 +116,9 @@ const Slider: React.FC<ISlider> = ({
         const containerWidth = containerRef.current.offsetWidth;
 
         // Get the min-width of the card content
-        const child = slideRef.current ? (slideRef.current.firstChild as HTMLElement) : 0;
+        const child = slideRef.current
+          ? (slideRef.current.firstChild as HTMLElement)
+          : 0;
         const computedStyle = child ? window.getComputedStyle(child) : null;
         const minWidth = computedStyle ? parseFloat(computedStyle.minWidth) : 0;
 
@@ -122,12 +131,14 @@ const Slider: React.FC<ISlider> = ({
 
     updateSlidesToShow();
 
-    window.addEventListener('resize', updateSlidesToShow);
-    return () => window.removeEventListener('resize', updateSlidesToShow);
+    window.addEventListener("resize", updateSlidesToShow);
+    return () => window.removeEventListener("resize", updateSlidesToShow);
   }, [totalSlides, slidesToShow]);
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex < totalSlides - visibleSlides ? prevIndex + 1 : prevIndex));
+    setCurrentIndex((prevIndex) =>
+      prevIndex < totalSlides - visibleSlides ? prevIndex + 1 : prevIndex
+    );
   };
 
   const prevSlide = () => {
@@ -168,7 +179,7 @@ const Slider: React.FC<ISlider> = ({
   });
 
   return (
-    <Background $bgImgSrc={bgImgSrc ?? ''} ref={containerRef}>
+    <Background $bgImgSrc={bgImgSrc ?? ""} ref={containerRef}>
       {toggleNavigation && totalSlides !== visibleSlides && (
         <SliderHeader
           currentIndex={currentIndex}
@@ -200,7 +211,11 @@ const Slider: React.FC<ISlider> = ({
         $visibleSlides={visibleSlides}
       >
         {togglePaginationDots && totalSlides !== visibleSlides && (
-          <PaginationDots length={totalSlides} currentIndex={currentIndex} style={paginationDotsStyle} />
+          <PaginationDots
+            length={totalSlides}
+            currentIndex={currentIndex}
+            style={paginationDotsStyle}
+          />
         )}
       </SliderPagination>
     </Background>

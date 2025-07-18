@@ -1,7 +1,7 @@
 import { ILogo } from ".";
 
 const base: ILogo = {
-  src: "../../../images/user.png",
+  src: "https://i.imgur.com/Sd51w3c.png",
   size: 48,
 };
 
